@@ -1,0 +1,20 @@
+<beans xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/beans_1_1.xsd">
+
+    <alternatives>
+        <class priority="1000">cdi.example.datastore.InMemoryDataStore</class>
+    </alternatives>
+
+	<interceptors>
+    	<class>cdi.example.palindrome.aop.AuditInterceptor</class>
+   	</interceptors>
+
+	<decorators>
+		<!--  
+    	<class>cdi.example.palindrome.aop.SimplePalindromeDecorator</class>
+    	-->
+    	<class>cdi.example.palindrome.aop.PalindromeDecorator</class>
+   	</decorators>
+
+</beans>
