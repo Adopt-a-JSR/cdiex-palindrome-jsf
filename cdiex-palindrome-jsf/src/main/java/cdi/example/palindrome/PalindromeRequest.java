@@ -6,7 +6,6 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 import cdi.example.palindrome.beans.SimplePalindromeService;
-import cdi.example.palindrome.bindings.PalindromeServiceSync;
 
 
 
@@ -15,7 +14,7 @@ import cdi.example.palindrome.bindings.PalindromeServiceSync;
 public class PalindromeRequest {
     
 	// Context: Injecting an application scoped bean into a request scoped bean.
-//	@Inject @PalindromeServiceBinding 
+//	@Inject @PalindromeServiceSync 
 //	private Palindrome palindromeBean; 
 	@Inject
 	private SimplePalindromeService palindromeBean; 
