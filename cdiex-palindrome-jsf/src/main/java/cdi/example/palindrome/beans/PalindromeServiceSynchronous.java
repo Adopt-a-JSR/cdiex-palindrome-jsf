@@ -15,10 +15,6 @@ import cdi.example.datastore.DataStore;
 import cdi.example.datastore.bindings.Repository;
 
 @PalindromeServiceSync
-// Singleton scope does not mix well with beans that can be passivated
-// (e.g. session or conversation scoped). Serialization could change the 
-// singleton into something that is not really a singleton. Probably not good!
-//@Singleton 
 @ApplicationScoped
 public class PalindromeServiceSynchronous implements Palindrome {
 
@@ -60,6 +56,10 @@ public class PalindromeServiceSynchronous implements Palindrome {
 			logger.info("Value [{}] retrieved from datastore.", word);			
 		}
 		return palindrome;
+	}
+
+	public String serviceInfo() {
+		return null;
 	}
 
 } 

@@ -7,14 +7,11 @@
     </alternatives>
 
 	<interceptors>
-    	<class>cdi.example.palindrome.aop.AuditInterceptor</class>
+    	<class>cdi.example.palindrome.interceptors.AuditInterceptor</class>
    	</interceptors>
 
 	<decorators>
-		<!--  
-    	<class>cdi.example.palindrome.aop.SimplePalindromeDecorator</class>
-    	-->
-    	<class>cdi.example.palindrome.aop.PalindromeDecorator</class>
+    	<class>cdi.example.palindrome.decorators.PalindromeDecorator</class>
    	</decorators>
 
 </beans>

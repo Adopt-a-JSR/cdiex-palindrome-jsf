@@ -28,6 +28,7 @@ public class PalindromeServiceAsynchronous implements Palindrome {
 	private Logger logger;
 
 	private Pattern pattern; 
+
 	
 	public PalindromeServiceAsynchronous() {
 	}
@@ -58,6 +59,13 @@ public class PalindromeServiceAsynchronous implements Palindrome {
 			logger.info("Value [{}] retrieved from datastore.", word);			
 		}
 		return palindrome;
+	}
+
+	// An implementation of this method which returns the bean info can be found in the decorator.
+	// Note that I am not necessarily saying this is good design. I just needed something to demonstrate
+	// injection of bean metadata into the bean decorator...
+	public String serviceInfo() {
+		return null;
 	}
 
 } 

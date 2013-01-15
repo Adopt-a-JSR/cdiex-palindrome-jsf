@@ -9,7 +9,7 @@ import javax.enterprise.context.Conversation;
 import javax.enterprise.context.ConversationScoped;
 import javax.inject.Named;
 
-import cdi.example.palindrome.bindings.PalindromeServiceSync;
+import cdi.example.palindrome.bindings.PalindromeServiceAsync;
 
 
 @Named
@@ -20,7 +20,7 @@ public class PalindromeConversation implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	// Context: Injecting an application scoped bean into a conversation scoped bean.
-	@Inject @PalindromeServiceSync 
+	@Inject @PalindromeServiceAsync
 	private Palindrome palindromeBean; 
 
 	@Inject

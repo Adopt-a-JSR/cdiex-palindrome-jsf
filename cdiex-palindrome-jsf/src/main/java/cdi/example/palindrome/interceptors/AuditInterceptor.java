@@ -1,4 +1,4 @@
-package cdi.example.palindrome.aop;
+package cdi.example.palindrome.interceptors;
 
 import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;

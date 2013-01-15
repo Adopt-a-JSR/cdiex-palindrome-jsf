@@ -14,10 +14,10 @@ import cdi.example.datastore.DataStore;
 import cdi.example.datastore.bindings.Repository;
 
 
-// Singleton scope does not mix well with beans that can be passivated
-// (e.g. session or conversation scoped). Serialization could change the 
-// singleton into something that is not really a singleton. Probably not good!
-//@Singleton 
+// Note: this cannot be decorated as the decorator would have to extend this class and  
+// "...The decorator bean class and its superclasses are not decorated types of the decorator."
+// See: https://issues.jboss.org/browse/CDI-221, https://issues.jboss.org/browse/CDI-224
+// It can however be intercepted as shown below.
 @ApplicationScoped
 public class SimplePalindromeService {
 

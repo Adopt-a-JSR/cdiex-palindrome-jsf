@@ -9,6 +9,11 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jboss.weld2.home>E:/devel/java/jboss/jboss-as-7.1.1.weld2.Final</jboss.weld2.home>
+		<!-- test properties -->
+	    <version.arquillian>1.0.3.Final</version.arquillian>
+	    <version.arquillian.container>1.0.0.Final-SNAPSHOT</version.arquillian.container>
+	    <version.junit>4.10</version.junit>
+	    <version.specs>3.0.1.Final</version.specs>
 	</properties>
 
 	<repositories>
@@ -38,6 +43,19 @@
 			<url>http://download.java.net/maven/glassfish</url>
 		</repository>
 	</repositories>
+
+	<dependencyManagement>
+	   <dependencies>
+	      <dependency>
+	         <groupId>org.jboss.arquillian</groupId>
+	         <artifactId>arquillian-bom</artifactId>
+	         <version>${version.arquillian}</version>
+	         <scope>import</scope>
+	         <type>pom</type>
+	      </dependency>
+	   </dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
@@ -57,7 +75,14 @@
 		<dependency>
 			<groupId>cdi.example.datastore</groupId>
 			<artifactId>cdiex-datastore</artifactId>
-			<version>0.0.3-SNAPSHOT</version>
+			<version>0.0.4-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.spec</groupId>
+			<artifactId>jboss-javaee-6.0</artifactId>
+			<version>${version.specs}</version>
+			<type>pom</type>
+			<scope>provided</scope>
 		</dependency>
 		<!--  This does not work on Tomcat. See: https://issues.jboss.org/browse/WELD-1295
 		<dependency>
@@ -88,6 +113,24 @@
 			<version>1.6.1</version>
 		</dependency>
 		-->
+		<!-- Test Dependencies -->
+ 	    <dependency>
+	        <groupId>junit</groupId>
+	        <artifactId>junit</artifactId>
+	        <version>${version.junit}</version>
+	        <scope>test</scope>
+	    </dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.junit</groupId>
+			<artifactId>arquillian-junit-container</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.arquillian.container</groupId>
+			<artifactId>arquillian-weld-ee-embedded-2.0</artifactId>
+			<version>${version.arquillian.container}</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
