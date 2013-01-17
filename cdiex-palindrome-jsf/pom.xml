@@ -8,12 +8,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<jboss.weld2.home>E:/devel/java/jboss/jboss-as-7.1.1.weld2.Final</jboss.weld2.home>
+
 		<!-- test properties -->
-	    <version.arquillian>1.0.3.Final</version.arquillian>
-	    <version.arquillian.container>1.0.0.Final-SNAPSHOT</version.arquillian.container>
-	    <version.junit>4.10</version.junit>
-	    <version.specs>3.0.1.Final</version.specs>
+		<version.arquillian>1.0.3.Final</version.arquillian>
+		<version.arquillian.container>1.0.0.Final-SNAPSHOT</version.arquillian.container>
+		<version.junit>4.10</version.junit>
+		<version.specs>3.0.1.Final</version.specs>
 	</properties>
 
 	<repositories>
@@ -45,15 +45,15 @@
 	</repositories>
 
 	<dependencyManagement>
-	   <dependencies>
-	      <dependency>
-	         <groupId>org.jboss.arquillian</groupId>
-	         <artifactId>arquillian-bom</artifactId>
-	         <version>${version.arquillian}</version>
-	         <scope>import</scope>
-	         <type>pom</type>
-	      </dependency>
-	   </dependencies>
+		<dependencies>
+			<dependency>
+				<groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId>
+				<version>${version.arquillian}</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+		</dependencies>
 	</dependencyManagement>
 
 	<dependencies>
@@ -84,7 +84,6 @@
 			<type>pom</type>
 			<scope>provided</scope>
 		</dependency>
-		<!--  This does not work on Tomcat. See: https://issues.jboss.org/browse/WELD-1295
 		<dependency>
 			<groupId>org.jboss.weld</groupId>
 			<artifactId>weld-core</artifactId>
@@ -112,14 +111,13 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-		-->
 		<!-- Test Dependencies -->
- 	    <dependency>
-	        <groupId>junit</groupId>
-	        <artifactId>junit</artifactId>
-	        <version>${version.junit}</version>
-	        <scope>test</scope>
-	    </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${version.junit}</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.jboss.arquillian.junit</groupId>
 			<artifactId>arquillian-junit-container</artifactId>
@@ -139,31 +137,51 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.3.2</version>
+				<version>2.5.1</version>
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-war-plugin</artifactId>
-		        <version>2.3</version>
-		        <configuration>
-		          <warName>cdiex-palindrome-jsf</warName>
-		          <outputDirectory>${jboss.weld2.home}/standalone/deployments</outputDirectory>
-				  <packagingExcludes>%regex[WEB-INF/lib/(?!cdiex).*.jar]</packagingExcludes>
-		          <!--  
-		          <webappDirectory>${env.CATALINA_HOME}/webapps</webappDirectory>
-		          -->
-				  <archive>
-				    <manifestEntries>
-					  <Dependencies>org.slf4j</Dependencies>
-					</manifestEntries>
-			      </archive>		        
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<warName>cdiex-palindrome-jsf</warName>
+					<packagingExcludes>%regex[WEB-INF/lib/(?!cdiex).*.jar]</packagingExcludes>
+					<!-- <webappDirectory>${env.CATALINA_HOME}/webapps</webappDirectory> -->
+					<archive>
+						<manifestEntries>
+							<Dependencies>org.slf4j</Dependencies>
+						</manifestEntries>
+					</archive>
 				</configuration>
-		    </plugin>
+			</plugin>
 		</plugins>
 	</build>
 
+	<profiles>
+		<profile>
+			<id>jboss7</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.jboss.as.plugins</groupId>
+						<artifactId>jboss-as-maven-plugin</artifactId>
+						<version>7.3.Final</version>
+						<extensions>false</extensions>
+		
+						<configuration>
+							<filename>${project.build.finalName}.${project.packaging}</filename>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
