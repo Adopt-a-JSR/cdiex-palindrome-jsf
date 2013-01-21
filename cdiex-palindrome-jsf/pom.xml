@@ -8,9 +8,6 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<!--  
-		<jboss.weld2.home>E:/devel/java/jboss/jboss-as-7.1.1.weld2.Final</jboss.weld2.home>
-		-->
 		<!-- test properties -->
 	    <version.arquillian>1.0.3.Final</version.arquillian>
 	    <version.arquillian.container>1.0.0.Final-SNAPSHOT</version.arquillian.container>
@@ -59,23 +56,21 @@
 	</dependencyManagement>
 
 	<dependencies>
+		<!--  This does not work on Tomcat. See: https://issues.jboss.org/browse/WELD-1295 -->
 		<dependency>
 			<groupId>org.jboss.weld.servlet</groupId>
 			<artifactId>weld-servlet</artifactId>
 			<version>2.0.0.Beta2</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-api</artifactId>
 			<version>2.1.3-b02</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.sun.faces</groupId>
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.3-b02</version>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>cdi.example.datastore</groupId>
@@ -150,26 +145,15 @@
 					<target>1.6</target>
 				</configuration>
 			</plugin>
-<!--  
 			<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-war-plugin</artifactId>
 		        <version>2.3</version>
 		        <configuration>
-		          <warName>cdiex-palindrome-jsf</warName>
-		          <outputDirectory>${jboss.weld2.home}/standalone/deployments</outputDirectory>
+		          <warName>${project.build.finalName}</warName>
 				  <packagingExcludes>%regex[WEB-INF/lib/(?!cdiex).*.jar]</packagingExcludes>
-		          <!  
-		          <webappDirectory>${env.CATALINA_HOME}/webapps</webappDirectory>
-		          >
-				  <archive>
-				    <manifestEntries>
-					  <Dependencies>org.slf4j</Dependencies>
-					</manifestEntries>
-			      </archive>		        
 				</configuration>
 		    </plugin>
--->
 		</plugins>
 	</build>
 
