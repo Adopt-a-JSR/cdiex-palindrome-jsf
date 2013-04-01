@@ -4,7 +4,7 @@ CDI + JSF palindrome application. It is packaged as a war archive and demonstrat
 
 It depends on cdiex-datastore.
 
-To deploy in JBoss 7.1.1, this needs to be patched with the CDI 1.1 RI first using the installer found in the Weld 2.0.0.Beta2 distribution.
+To deploy in JBoss 7.1.1, this needs to be patched with the CDI 1.1 RI first using the installer for Weld 2.0.0.Beta7 which can be found at: https://github.com/weld/as7-weld-subsystem/tree/2.0.0.Beta7.
 Then you can deploy via: mvn jboss-as:deploy
 
 See: 
